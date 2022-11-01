@@ -15,7 +15,7 @@ export const Detail = () => {
       </div>
       <div className='container mx-auto p-5'>
         <h1 className='text-4xl font-bold text-gray-800 my-6'>Pikachu</h1>
-        <div className='bg-gray-100 w-fit px-4 py-1 border border-gray-300 rounded shadow cursor-pointer'>
+        <div className='bg-gray-100 w-fit px-4 py-2 border border-gray-300 rounded shadow cursor-pointer'>
           <span className='text-cyan-800 text-sm font-medium'>Update stok</span>
         </div>
       </div>
