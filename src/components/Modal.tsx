@@ -11,10 +11,10 @@ const Modal = ({ children, show }: ModalProps) => {
       {
         show && (
           <>
-            <div className='absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50'>
+            <div className='overlay'>
             </div>
-            <div className='absolute flex inset-0 min-h-screen w-full items-center justify-center p-2'>
-              <div className='bg-white p-8 rounded-md max-w-sm'>
+            <div className='modal'>
+              <div className='modal-body'>
                 {children}
               </div>
             </div>

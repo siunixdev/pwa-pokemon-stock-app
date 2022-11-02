@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import Button from '../components/Button'
+import PokemonContext from '../context/PokemonContext'
+import { Link } from 'react-router-dom'
 
 const Confirm = () => {
+  const { pokemonLastPage, pokemonLusin, pokemonPcs, pokemonUpdateStok, pokemonUpdatedStok } = useContext(PokemonContext)
+
   return (
     <React.Fragment>
       <div className='relative flex items-center justify-center p-4 shadow'>
         <div className='absolute left-5 text-cyan-800'>
-          <div>
+          <Link to={`/${pokemonLastPage}`}>
             <XMarkIcon className='w-6 h-6' />
-          </div>
+          </Link>
         </div>
         <h3 className='text-xl font-bold text-gray-800'>Stok Pokémon</h3>
       </div>
@@ -17,13 +21,13 @@ const Confirm = () => {
         <h1 className='text-2xl md:text-4xl font-bold text-gray-800 my-6 capitalize'>Konfirmasi Update stok</h1>
         <div className='mt-8'>
           <span>Selisih</span>
-          <h1 className='text-2xl md:text-4xl text-gray-800 capitalize'>+123 pcs</h1>
+          <h1 className='text-2xl md:text-4xl text-gray-800 capitalize'>+{pokemonUpdatedStok} pcs</h1>
         </div>
         <div className='mt-10'>
           <div className='grid grid-cols-2'>
             <div>
               <p className='text-xs md:text-base'>Di Sistem</p>
-              <h3 className='text-xl text-gray-800'>10 pcs</h3>
+              <h3 className='text-xl text-gray-800'>{pokemonUpdateStok} pcs</h3>
             </div>
             <div className='flex gap-8'>
               <div className='flex justify-center items-center'>
@@ -31,7 +35,7 @@ const Confirm = () => {
               </div>
               <div>
                 <p className='text-xs md:text-base'>Hasil Update Stok</p>
-                <h3 className='text-xl text-gray-800'>121 pcs</h3>
+                <h3 className='text-xl text-gray-800'>{pokemonUpdateStok + pokemonUpdatedStok} pcs</h3>
               </div>
             </div>
           </div>
@@ -49,14 +53,14 @@ const Confirm = () => {
                   <tr className='border-b border-gray-400 flex justify-between'>
                     <td className='my-4 w-1/2'>
                       <p className='text-cyan-800 font-semibold capitalize'>Hasil update stok</p>
-                      <p className='text-sm'>3 pcs, 45 lusin (12s)</p>
+                      <p className='text-sm'>{pokemonPcs} pcs, {pokemonLusin} lusin (12pcs)</p>
                     </td>
-                    <td className='my-4 text-cyan-800 text-center'>+453 pcs</td>
+                    <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdatedStok} pcs</td>
                   </tr>
                 }
                 <tr className='flex justify-between'>
                   <td className='my-4 w-1/2 font-semibold'>Total hasil stok opname</td>
-                  <td className='my-4 text-cyan-800 text-center'>+453 pcs</td>
+                  <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdatedStok} pcs</td>
                 </tr>
               </tbody>
             </table>

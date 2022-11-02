@@ -23,3 +23,15 @@ html {
 .btn--secondary {
   @apply bg-gray-100 border border-gray-300 text-cyan-800
 }
+
+.overlay {
+  @apply absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50
+}
+
+.modal {
+  @apply absolute flex inset-0 min-h-screen w-full items-center justify-center p-2
+}
+
+.modal-body {
+  @apply bg-white p-8 rounded-md max-w-sm
+}
