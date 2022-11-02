@@ -25,14 +25,24 @@ interface DetailData {
 }
 
 const Detail = () => {
-  const { setPokemonLastPage, setPokemonLusin, setPokemonPcs, setPokemonUpdateStok, setPokemonUpdatedStok } = useContext(PokemonContext)
+  const {
+    setPokemonName,
+    setPokemonLastPage,
+    pokemonLusin,
+    setPokemonLusin,
+    pokemonPcs,
+    setPokemonPcs,
+    setPokemonUpdateStok,
+    setPokemonUpdatedStok,
+    isUpdate
+  } = useContext(PokemonContext)
   const navigate = useNavigate()
   const param = useParams()
   const name = param.pokeId
-  const [showUpdate, setShowUpdate] = useState(false)
+  const [showUpdate, setShowUpdate] = useState(isUpdate)
   const [detail, setDetail] = useState<DetailData>()
-  const [pcs, setPcs] = useState<number>(0)
-  const [lusin, setLusin] = useState<number>(0)
+  const [pcs, setPcs] = useState<number>(pokemonPcs)
+  const [lusin, setLusin] = useState<number>(pokemonLusin)
 
   const handlePcsChange = (value: string) => {
     let pcs = parseInt(value.replace(/\D/g, ''))
@@ -47,12 +57,24 @@ const Detail = () => {
   }
 
   const handleSave = () => {
+    if(pcs + lusin * 12 === 0) {
+      window.alert("Maaf, Tidak ada data yang dapat disimpan!")
+      return false
+    }
     setPokemonLastPage(name)
     setPokemonLusin(lusin)
     setPokemonPcs(pcs)
     setPokemonUpdateStok(detail?.stok)
     setPokemonUpdatedStok(pcs + lusin * 12)
+    setPokemonName(name)
     navigate('/confirm')
+  }
+
+  const handleBatal = () => {
+    setPokemonLusin(0)
+    setPcs(0)
+    setLusin(0)
+    setShowUpdate(false)
   }
 
   useEffect(() => {
@@ -82,7 +104,7 @@ const Detail = () => {
       {
         detail ? (
           <>
-            <div className='pokemon-container'>
+            <div className='container mx-auto w-auto p-8'>
               <h1 className='text-4xl font-bold text-gray-800 my-6 capitalize'>{detail?.name?.split('-').join(' ')}</h1>
               <Button text='Update Stok' type='secondary' handle={() => setShowUpdate(true)} />
               <div className='mt-8'>
@@ -106,7 +128,7 @@ const Detail = () => {
                           </thead>
                           <tbody>
                             {
-                              data?.data.map((dt, i) => {
+                              data?.data.slice(0).map((dt, i) => {
                                 return (
                                   <tr className='border-b border-gray-400 flex justify-between' key={i}>
                                     <td className='my-4 w-1/2'>
@@ -171,7 +193,7 @@ const Detail = () => {
                     </tbody>
                   </table>
                   <div className='flex justify-end mt-4 gap-2'>
-                    <Button text='Batal' type='secondary' handle={() => setShowUpdate(false)} />
+                    <Button text='Batal' type='secondary' handle={handleBatal} />
                     <Button text='Simpan' type='primary' handle={handleSave} />
                   </div>
                 </div>

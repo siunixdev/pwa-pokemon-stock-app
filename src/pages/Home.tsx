@@ -7,21 +7,32 @@ interface Pokemon {
 }
 
 const Home = () => {
-  const { pokemon } = useContext(PokemonContext)
+  const {
+    pokemon,
+    setPokemonLusin,
+    setPokemonPcs,
+    setPokemonUpdatedStok,
+    setIsUpdate
+  } = useContext(PokemonContext)
   const [filteredPokemon, setFilteredPokemon] = useState<Pokemon[]>([])
   const [keyword, setKeyword] = useState<string>('')
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if(event.key === 'Enter') {
+    if (event.key === 'Enter') {
       setFilteredPokemon(pokemon.filter((poke: { name: string | string[] }) => poke.name.includes(keyword)))
     }
   }
 
   useEffect(() => {
-    if(keyword.trim() === '') {
+    if (keyword.trim() === '') {
       setFilteredPokemon(pokemon)
     }
-  }, [keyword, pokemon])
+
+    setPokemonLusin(0)
+    setPokemonPcs(0)
+    setPokemonUpdatedStok(0)
+    setIsUpdate(false)
+  }, [keyword, pokemon, setIsUpdate, setPokemonLusin, setPokemonPcs, setPokemonUpdatedStok])
 
   return (
     <React.Fragment>

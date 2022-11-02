@@ -17,6 +17,8 @@ interface IPokemonContext {
   setPokemonUpdatedStok?: any,
   pokemonLastPage:string,
   setPokemonLastPage?: any,
+  isUpdate:boolean,
+  setIsUpdate?: any,
 }
 
 const defaultstate = {
@@ -27,7 +29,8 @@ const defaultstate = {
   pokemonLusin:0,
   pokemonUpdateStok:0,
   pokemonUpdatedStok:0,
-  pokemonLastPage:''
+  pokemonLastPage:'',
+  isUpdate: false
 }
 
 const PokemonContext = React.createContext<IPokemonContext>(defaultstate)

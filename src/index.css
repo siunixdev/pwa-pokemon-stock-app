@@ -25,7 +25,7 @@ html {
 }
 
 .overlay {
-  @apply absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50
+  @apply absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50 overflow-y-hidden
 }
 
 .modal {

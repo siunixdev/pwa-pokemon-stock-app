@@ -1,19 +1,90 @@
-import React, { useContext } from 'react'
-import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
+import React, { useContext, useState } from 'react'
+import { XMarkIcon, ArrowRightIcon, PencilIcon } from '@heroicons/react/24/outline'
 import Button from '../components/Button'
 import PokemonContext from '../context/PokemonContext'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 const Confirm = () => {
-  const { pokemonLastPage, pokemonLusin, pokemonPcs, pokemonUpdateStok, pokemonUpdatedStok } = useContext(PokemonContext)
+  const navigate = useNavigate()
+  const {
+    pokemon,
+    setPokemon,
+    pokemonName,
+    pokemonLastPage,
+    pokemonLusin,
+    setPokemonLusin,
+    pokemonPcs,
+    setPokemonPcs,
+    pokemonUpdateStok,
+    setPokemonUpdateStok,
+    pokemonUpdatedStok,
+    setPokemonUpdatedStok,
+    setIsUpdate
+  } = useContext(PokemonContext)
+  const [description, setDescription] = useState<string>('')
+
+  const handleClose = () => {
+    if (window.confirm("Are you sure ? your recent update will be reset if you close this window")) {
+      setPokemonLusin(0)
+      setPokemonPcs(0)
+      setPokemonUpdatedStok(0)
+      setPokemonUpdateStok(0)
+      setIsUpdate(false)
+      navigate(`/${pokemonLastPage}`)
+    }
+  }
+
+  const handleEdit = () => {
+    setIsUpdate(true)
+    navigate(`/${pokemonLastPage}`)
+  }
+
+  const handleSave = () => {
+    const date = dayjs().format('DD MMM YYYY')
+    const time = dayjs().format('HH:mm')
+    const pokemonIndex = pokemon.findIndex((dt: { name: string }) => dt.name === pokemonName)
+    const pokemonDateIndex = pokemon[pokemonIndex].log.findIndex((dt: { date: string }) => dt.date === date)
+    pokemon[pokemonIndex].stok = pokemonUpdateStok + pokemonUpdatedStok
+
+    if (pokemonDateIndex !== -1) {
+      pokemon[pokemonIndex].log[pokemonDateIndex].data.push({
+        time: time,
+        title: 'Update Stok',
+        updateStok: pokemonUpdateStok,
+        updatedStok: pokemonUpdatedStok,
+        description: description
+      })
+    } else {
+      pokemon[pokemonIndex].log.push({
+        date: date,
+        data: [
+          {
+            time: time,
+            title: 'Update Stok',
+            updateStok: pokemonUpdateStok,
+            updatedStok: pokemonUpdatedStok,
+            description: description
+          }
+        ]
+      })
+    }
+
+    setPokemon(pokemon)
+    localStorage.setItem('pokemonData', JSON.stringify(pokemon))
+    setPokemonLusin(0)
+    setPokemonPcs(0)
+    setPokemonUpdatedStok(0)
+    setPokemonUpdateStok(0)
+    setIsUpdate(false)
+    navigate(`/${pokemonLastPage}`)
+  }
 
   return (
     <React.Fragment>
       <div className='relative flex items-center justify-center p-4 shadow'>
         <div className='absolute left-5 text-cyan-800'>
-          <Link to={`/${pokemonLastPage}`}>
-            <XMarkIcon className='w-6 h-6' />
-          </Link>
+          <XMarkIcon className='w-6 h-6' onClick={handleClose} />
         </div>
         <h3 className='text-xl font-bold text-gray-800'>Stok Pokémon</h3>
       </div>
@@ -55,7 +126,12 @@ const Confirm = () => {
                       <p className='text-cyan-800 font-semibold capitalize'>Hasil update stok</p>
                       <p className='text-sm'>{pokemonPcs} pcs, {pokemonLusin} lusin (12pcs)</p>
                     </td>
-                    <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdatedStok} pcs</td>
+                    <td className='flex items-center gap-3 my-4 text-cyan-800 text-center'>
+                      <span>+{pokemonUpdatedStok} pcs</span>
+                      <div className='cursor-pointer' onClick={handleEdit}>
+                        <PencilIcon className='w-4 h-4' />
+                      </div>
+                    </td>
                   </tr>
                 }
                 <tr className='flex justify-between'>
@@ -67,10 +143,10 @@ const Confirm = () => {
           </div>
           <div className='mt-10'>
             <h3 className='font-bold text-gray-800 mb-4'>Catatan</h3>
-            <textarea name="" id="" rows={3} className='w-full border border-gray-200 outline-none p-4 rounded-md'></textarea>
+            <textarea name="" id="" rows={3} value={description} onChange={e => setDescription(e.target.value)} className='w-full border border-gray-200 outline-none p-4 rounded-md'></textarea>
           </div>
           <div className='flex justify-end mt-4'>
-            <Button text='Simpan' type='primary' handle={undefined} />
+            <Button text='Simpan' type='primary' handle={handleSave} />
           </div>
         </div>
       </div>

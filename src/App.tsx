@@ -21,6 +21,7 @@ const App = () => {
   const [pokemonUpdateStok, setPokemonUpdateStok] = useState<number>(0)
   const [pokemonUpdatedStok, setPokemonUpdatedStok] = useState<number>(0)
   const [pokemonLastPage, setPokemonLastPage] = useState<string>('')
+  const [isUpdate, setIsUpdate] = useState<boolean>(false)
 
   const fetchPokemon = (url: string) => {
     fetch(url)
@@ -86,7 +87,9 @@ const App = () => {
         pokemonUpdatedStok,
         setPokemonUpdatedStok,
         pokemonLastPage,
-        setPokemonLastPage
+        setPokemonLastPage,
+        isUpdate,
+        setIsUpdate
       }}
     >
       <React.Fragment>
