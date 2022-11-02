@@ -7,3 +7,19 @@
 html {
   font-family: 'Poppins', sans-serif;
 }
+
+.pokemon-container {
+  @apply container mx-auto w-auto md:w-1/2 p-8
+}
+
+.btn {
+  @apply w-fit px-4 py-2 rounded shadow cursor-pointer
+}
+
+.btn--primary {
+  @apply bg-cyan-800 text-white
+}
+
+.btn--secondary {
+  @apply bg-gray-100 border border-gray-300 text-cyan-800
+}

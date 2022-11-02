@@ -11,9 +11,9 @@ const Modal = ({ children, show }: ModalProps) => {
       {
         show && (
           <>
-            <div className='absolute top-0 left-0 min-h-screen w-full bg-gray-500 opacity-50'>
+            <div className='absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50'>
             </div>
-            <div className='absolute flex top-0 left-0 min-h-screen w-full items-center justify-center'>
+            <div className='absolute flex inset-0 min-h-screen w-full items-center justify-center p-2'>
               <div className='bg-white p-8 rounded-md max-w-sm'>
                 {children}
               </div>

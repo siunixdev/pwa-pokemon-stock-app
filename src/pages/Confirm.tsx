@@ -1,5 +1,6 @@
 import React from 'react'
 import { XMarkIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
+import Button from '../components/Button'
 
 const Confirm = () => {
   return (
@@ -65,9 +66,7 @@ const Confirm = () => {
             <textarea name="" id="" rows={3} className='w-full border border-gray-200 outline-none p-4 rounded-md'></textarea>
           </div>
           <div className='flex justify-end mt-4'>
-            <div className='bg-cyan-800 w-fit px-4 py-2 rounded shadow cursor-pointer'>
-              <span className='text-white text-sm font-medium'>Simpan</span>
-            </div>
+            <Button text='Simpan' type='primary' handle={undefined} />
           </div>
         </div>
       </div>

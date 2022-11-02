@@ -1,51 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-
+import PokemonContext from '../context/PokemonContext'
 interface Pokemon {
   name: string,
   stok: number
 }
 
 const Home = () => {
-  const pokeUrl = 'https://pokeapi.co/api/v2/pokemon'
-  const [pokemon, setPokemon] = useState<Pokemon[]>([])
+  const { pokemon } = useContext(PokemonContext)
   const [filteredPokemon, setFilteredPokemon] = useState<Pokemon[]>([])
   const [keyword, setKeyword] = useState<string>('')
 
-  const fetchPokemon = (url: string) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        const pokemonData: { name: string; stok: number }[] = []
-
-        data.results.forEach((dt: { name: string }) => {
-          pokemonData.push({
-            name: dt.name,
-            stok: 0,
-          })
-        });
-
-        setPokemon(pokemonData)
-        setFilteredPokemon(pokemonData)
-      })
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.key === 'Enter') {
+      setFilteredPokemon(pokemon.filter((poke: { name: string | string[] }) => poke.name.includes(keyword)))
+    }
   }
 
   useEffect(() => {
     if(keyword.trim() === '') {
-      fetchPokemon(pokeUrl)
+      setFilteredPokemon(pokemon)
     }
-  }, [keyword])
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if(event.key === 'Enter') {
-      setFilteredPokemon(pokemon.filter(poke => poke.name.includes(keyword)))
-    }
-  }
+  }, [keyword, pokemon])
 
   return (
     <React.Fragment>
-      <div className='container mx-auto p-8'>
+      <div className='pokemon-container'>
         <div>
           <h1 className='text-3xl md:text-4xl font-bold text-gray-800'>Stok Pokémon</h1>
         </div>
