@@ -13,7 +13,7 @@ html {
 }
 
 .btn {
-  @apply w-fit px-4 py-2 rounded shadow cursor-pointer
+  @apply w-fit px-4 py-2 rounded shadow cursor-pointer h-min
 }
 
 .btn--primary {

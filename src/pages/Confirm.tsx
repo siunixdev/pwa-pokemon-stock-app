@@ -82,7 +82,7 @@ const Confirm = () => {
 
   return (
     <React.Fragment>
-      <div className='relative flex items-center justify-center p-4 shadow'>
+      <div className='relative flex items-center justify-center p-4 shadow md:hidden'>
         <div className='absolute left-5 text-cyan-800'>
           <XMarkIcon className='w-6 h-6' onClick={handleClose} />
         </div>
@@ -145,7 +145,10 @@ const Confirm = () => {
             <h3 className='font-bold text-gray-800 mb-4'>Catatan</h3>
             <textarea name="" id="" rows={3} value={description} onChange={e => setDescription(e.target.value)} className='w-full border border-gray-200 outline-none p-4 rounded-md'></textarea>
           </div>
-          <div className='flex justify-end mt-4'>
+          <div className='flex justify-end items-center mt-4 gap-2'>
+            <div className='invisible md:visible'>
+              <Button text='Batal' type='secondary' handle={handleClose} />
+            </div>
             <Button text='Simpan' type='primary' handle={handleSave} />
           </div>
         </div>

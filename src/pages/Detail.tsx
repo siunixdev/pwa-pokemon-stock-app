@@ -57,7 +57,7 @@ const Detail = () => {
   }
 
   const handleSave = () => {
-    if(pcs + lusin * 12 === 0) {
+    if (pcs + lusin * 12 === 0) {
       window.alert("Maaf, Tidak ada data yang dapat disimpan!")
       return false
     }
@@ -93,7 +93,7 @@ const Detail = () => {
 
   return (
     <React.Fragment>
-      <div className='relative flex items-center justify-center p-4 shadow'>
+      <div className='relative flex items-center justify-center p-4 shadow md:hidden'>
         <div className='absolute left-5 text-cyan-800'>
           <Link to={'/'}>
             <ArrowLeftIcon className='w-6 h-6' />
@@ -105,8 +105,18 @@ const Detail = () => {
         detail ? (
           <>
             <div className='container mx-auto w-auto p-8'>
-              <h1 className='text-4xl font-bold text-gray-800 my-6 capitalize'>{detail?.name?.split('-').join(' ')}</h1>
-              <Button text='Update Stok' type='secondary' handle={() => setShowUpdate(true)} />
+              <div className='flex flex-col md:flex-row md:justify-between items-start md:items-start'>
+                <div>
+                  <Link to={'/'}>
+                    <div className='invisible md:visible flex gap-4 text-cyan-800'>
+                      <ArrowLeftIcon className='w-6 h-6' />
+                      <p>Stok Pokémon</p>
+                    </div>
+                  </Link>
+                  <h1 className='text-4xl font-bold text-gray-800 mb-6 md:mt-6 capitalize'>{detail?.name?.split('-').join(' ')}</h1>
+                </div>
+                <Button text='Update Stok' type='secondary' handle={() => setShowUpdate(true)} />
+              </div>
               <div className='mt-8'>
                 <span>Sisa Stok</span>
                 <h1 className='text-4xl text-gray-800 capitalize'>{detail?.stok} pcs</h1>
