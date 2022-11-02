@@ -134,10 +134,10 @@ const Detail = () => {
                                     <td className='my-4 w-1/2'>
                                       <p className='text-sm'>{dt.time}</p>
                                       <p className='text-cyan-800 font-semibold capitalize'>{dt.title}</p>
-                                      <p className='text-sm'>{dt.description}</p>
+                                      <p className='text-xs text-gray-600 mt-2'>{dt.description}</p>
                                     </td>
-                                    <td className='my-4 text-cyan-800 text-center'>+ {dt.updateStok}</td>
-                                    <td className='my-4 text-center'>{dt.updatedStok}</td>
+                                    <td className='my-4 text-cyan-800 text-center'>+ {dt.updatedStok}</td>
+                                    <td className='my-4 text-center'>{dt.updateStok + dt.updatedStok}</td>
                                   </tr>
                                 )
                               })

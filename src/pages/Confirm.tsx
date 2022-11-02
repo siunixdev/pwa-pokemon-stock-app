@@ -136,7 +136,7 @@ const Confirm = () => {
                 }
                 <tr className='flex justify-between'>
                   <td className='my-4 w-1/2 font-semibold'>Total hasil stok opname</td>
-                  <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdatedStok} pcs</td>
+                  <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdateStok + pokemonUpdatedStok} pcs</td>
                 </tr>
               </tbody>
             </table>
