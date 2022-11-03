@@ -38,13 +38,17 @@ const Home = () => {
     <React.Fragment>
       <div className='pokemon-container'>
         <div>
-          <h1 className='text-3xl md:text-4xl font-bold text-gray-800'>Stok Pokémon</h1>
+          <h1 className='title'>Stok Pokémon</h1>
         </div>
         <div className='mt-10'>
-          <input type="text" name="" id="" value={keyword} onChange={e => setKeyword(e.target.value)} onKeyDown={handleKeyDown} className='border border-gray-500 outline-none px-4 py-2 rounded text-gray-700 w-full md:w-min' placeholder='Search Pokémon' />
+          <input type="text" name="" id="" value={keyword} onChange={e => setKeyword(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className='search'
+            placeholder='Search Pokémon'
+          />
           <table width="100%" className='mt-8'>
             <thead>
-              <tr className='border-b border-gray-500 flex justify-between'>
+              <tr>
                 <th className='my-4 text-gray-700'>Nama</th>
                 <th className='my-4'>Stok</th>
               </tr>
@@ -53,7 +57,7 @@ const Home = () => {
               {
                 filteredPokemon.map((poke, i) => (
                   <Link to={`${poke.name}`} key={i}>
-                    <tr className='border-b border-gray-400 flex justify-between'>
+                    <tr>
                       <td className='my-4 text-cyan-800 font-semibold capitalize'>{poke.name.split('-').join(' ')}</td>
                       <td className='my-4'>{poke.stok}</td>
                     </tr>

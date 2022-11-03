@@ -115,7 +115,7 @@ const Detail = () => {
                       <p>Stok Pokémon</p>
                     </div>
                   </Link>
-                  <h1 className='text-4xl font-bold text-gray-800 mb-6 md:mt-6 capitalize'>{detail?.name?.split('-').join(' ')}</h1>
+                  <h1 className='title'>{detail?.name?.split('-').join(' ')}</h1>
                 </div>
                 <Button text='Update Stok' type='secondary' handle={() => setShowUpdate(true)} />
               </div>
@@ -132,7 +132,7 @@ const Detail = () => {
                       return (
                         <table width="100%" className='mt-8' key={i}>
                           <thead>
-                            <tr className='border-b border-gray-500 flex justify-between'>
+                            <tr>
                               <th className='my-4 text-gray-700 w-1/2 text-left'>{data?.date}</th>
                               <th className='my-4'>Jumlah</th>
                               <th className='my-4'>Stok</th>
@@ -142,7 +142,7 @@ const Detail = () => {
                             {
                               data?.data.map((dt, i) => {
                                 return (
-                                  <tr className='border-b border-gray-400 flex justify-between' key={i}>
+                                  <tr key={i}>
                                     <td className='my-4 w-1/2'>
                                       <p className='text-sm'>{dt.time}</p>
                                       <p className='text-cyan-800 font-semibold capitalize'>{dt.title}</p>

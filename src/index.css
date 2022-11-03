@@ -8,6 +8,14 @@ html {
   font-family: 'Poppins', sans-serif;
 }
 
+table thead tr {
+  @apply border-b border-gray-500 flex justify-between
+}
+
+table tbody tr {
+  @apply border-b border-gray-400 flex justify-between
+}
+
 .pokemon-container {
   @apply container mx-auto w-auto md:w-1/2 p-8
 }
@@ -34,4 +42,12 @@ html {
 
 .modal-body {
   @apply bg-white p-8 rounded-md max-w-sm
+}
+
+.title {
+  @apply text-3xl md:text-4xl font-bold text-gray-800 mb-6 md:mt-6 capitalize
+}
+
+.search {
+  @apply border border-gray-500 outline-none px-4 py-2 rounded text-gray-700 w-full md:w-min
 }

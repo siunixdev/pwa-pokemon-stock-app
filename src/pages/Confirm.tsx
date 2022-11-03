@@ -89,7 +89,7 @@ const Confirm = () => {
         <h3 className='text-xl font-bold text-gray-800'>Stok Pokémon</h3>
       </div>
       <div className='container mx-auto w-auto md:w-1/2 p-8'>
-        <h1 className='text-2xl md:text-4xl font-bold text-gray-800 my-6 capitalize'>Konfirmasi Update stok</h1>
+        <h1 className='title'>Konfirmasi Update stok</h1>
         <div className='mt-8'>
           <span>Selisih</span>
           <h1 className='text-2xl md:text-4xl text-gray-800 capitalize'>+{pokemonUpdatedStok} pcs</h1>
@@ -136,7 +136,7 @@ const Confirm = () => {
                 }
                 <tr className='flex justify-between'>
                   <td className='my-4 w-1/2 font-semibold'>Total hasil stok opname</td>
-                  <td className='my-4 text-cyan-800 text-center'>+{pokemonUpdateStok + pokemonUpdatedStok} pcs</td>
+                  <td className='my-4 text-cyan-800 text-center'>{pokemonUpdateStok + pokemonUpdatedStok} pcs</td>
                 </tr>
               </tbody>
             </table>
