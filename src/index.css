@@ -33,11 +33,11 @@ table tbody tr {
 }
 
 .overlay {
-  @apply absolute inset-0 min-h-screen w-full bg-gray-500 opacity-50 overflow-y-hidden
+  @apply fixed inset-0 z-50 bg-gray-400 opacity-50
 }
 
 .modal {
-  @apply absolute flex inset-0 min-h-screen w-full items-center justify-center p-2
+  @apply fixed z-50 flex inset-0 min-h-screen w-full items-center justify-center p-2
 }
 
 .modal-body {
