@@ -84,9 +84,11 @@ const Detail = () => {
         const data = JSON.parse(pokemonData)
         const index = data.findIndex((dt: { name: string }) => dt.name === name)
 
-        data[index].log.reverse()
+        if(index !== -1) {
+          data[index].log.reverse()
 
-        setDetail(data[index])
+          setDetail(data[index])
+        }
       }
     }
 
