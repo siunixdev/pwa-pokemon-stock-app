@@ -84,6 +84,8 @@ const Detail = () => {
         const data = JSON.parse(pokemonData)
         const index = data.findIndex((dt: { name: string }) => dt.name === name)
 
+        data[index].log.reverse()
+
         setDetail(data[index])
       }
     }
@@ -138,7 +140,7 @@ const Detail = () => {
                           </thead>
                           <tbody>
                             {
-                              data?.data.slice(0).map((dt, i) => {
+                              data?.data.map((dt, i) => {
                                 return (
                                   <tr className='border-b border-gray-400 flex justify-between' key={i}>
                                     <td className='my-4 w-1/2'>
